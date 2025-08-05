@@ -1,0 +1,52 @@
+const reviews = [
+  {
+    name: "Иван Иванов",
+    avatar: "https://randomuser.me/api/portraits/men/10.jpg",
+    date: "12.06.2025",
+    text: "Алмазы пришли быстро, спасибо!",
+    rating: 5
+  },
+  {
+    name: "Пудж",
+    avatar: "https://randomuser.me/api/portraits/men/20.jpg",
+    date: "14.06.2025",
+    text: "Гемы получил моментально, кайф!",
+    rating: 5
+  },
+  {
+    name: "ShadowX",
+    avatar: "https://randomuser.me/api/portraits/men/30.jpg",
+    date: "15.06.2025",
+    text: "Робуксы зашли без проблем!",
+    rating: 4
+  }
+];
+
+function createStars(rating) {
+  let stars = '';
+  for (let i = 1; i <= 5; i++) {
+    stars += i <= rating ? '★' : '☆';
+  }
+  return stars;
+}
+
+function renderReviews() {
+  const container = document.getElementById('reviews');
+  container.innerHTML = '';
+  reviews.forEach(r => {
+    const div = document.createElement('div');
+    div.className = 'review';
+    div.innerHTML = `
+      <img class="avatar" src="${r.avatar}" alt="${r.name}">
+      <div class="review-content">
+        <div class="review-name">${r.name}</div>
+        <div class="review-date">${r.date}</div>
+        <div class="review-text">${r.text}</div>
+        <div class="review-stars">${createStars(r.rating)}</div>
+      </div>
+    `;
+    container.appendChild(div);
+  });
+}
+
+renderReviews();
