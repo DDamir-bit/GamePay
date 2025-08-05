@@ -54,16 +54,18 @@ function generateReviews(count) {
 }
 
 const reviews = generateReviews(100);
+let displayed = 0;
+const batchSize = 12;
 
 function renderReviews() {
   const container = document.getElementById('reviews');
-  container.innerHTML = '';
-  reviews.forEach(r => {
+  for (let i = displayed; i < displayed + batchSize && i < reviews.length; i++) {
+    const r = reviews[i];
     const div = document.createElement('div');
     div.className = 'review';
     div.innerHTML = `
-      <img class="avatar" src="${r.avatar}" alt="${r.name}">
       <div class="review-content">
+        <img class="avatar" src="${r.avatar}" alt="${r.name}">
         <div class="review-name">${r.name}</div>
         <div class="review-date">${r.date}</div>
         <div class="review-text">${r.text}</div>
@@ -71,7 +73,13 @@ function renderReviews() {
       </div>
     `;
     container.appendChild(div);
-  });
+  }
+  displayed += batchSize;
+  if (displayed >= reviews.length) {
+    document.getElementById('load-more').style.display = 'none';
+  }
 }
+
+document.getElementById('load-more').addEventListener('click', renderReviews);
 
 renderReviews();
