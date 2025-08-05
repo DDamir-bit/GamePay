@@ -1,55 +1,84 @@
 body {
-  font-family: Arial, sans-serif;
-  background: #fff9c4;
+  font-family: 'Inter', sans-serif;
+  background: #fffef9;
   margin: 0;
-  padding: 20px;
+  padding: 0;
   color: #333;
 }
 
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
 header {
-  background: #fbc02d;
-  padding: 15px;
   text-align: center;
-  font-weight: 700;
-  font-size: 1.5rem;
-  border-radius: 6px;
-  margin-bottom: 15px;
+  margin-bottom: 25px;
+}
+
+header h1 {
+  font-size: 2.2rem;
+  color: #fbbf24;
+  margin-bottom: 5px;
+}
+
+header p {
+  font-size: 1rem;
+  color: #666;
 }
 
 .rating {
   text-align: center;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #fbc02d;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
 }
 
-.stars {
-  font-size: 1.5rem;
-  letter-spacing: 3px;
+.rating .score {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.rating .bar {
+  background: #eee;
+  border-radius: 6px;
+  height: 12px;
+  width: 200px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.rating .bar span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, #fbbf24, #f59e0b);
 }
 
 .reviews {
-  max-width: 700px;
-  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 
 .review {
-  background: #fffde7;
-  padding: 12px 15px;
-  border-radius: 8px;
-  margin-bottom: 12px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   display: flex;
-  gap: 12px;
+  gap: 15px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+}
+
+.review:hover {
+  transform: translateY(-2px);
 }
 
 .avatar {
-  width: 56px;
-  height: 56px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
   object-fit: cover;
-  flex-shrink: 0;
 }
 
 .review-content {
@@ -59,22 +88,22 @@ header {
 .review-name {
   font-weight: 700;
   font-size: 1.1rem;
+  color: #222;
 }
 
 .review-date {
   font-size: 0.85rem;
-  color: #666;
+  color: #999;
+  margin-bottom: 6px;
 }
 
 .review-text {
-  margin-top: 6px;
   font-size: 1rem;
-  line-height: 1.3;
+  line-height: 1.4;
+  margin-bottom: 6px;
 }
 
 .review-stars {
-  margin-top: 8px;
-  color: #fbc02d;
-  font-weight: 700;
-  font-size: 1.2rem;
+  color: #fbbf24;
+  font-weight: bold;
 }
