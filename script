@@ -1,34 +1,59 @@
-const reviews = [
-  {
-    name: "Иван Иванов",
-    avatar: "https://randomuser.me/api/portraits/men/10.jpg",
-    date: "12.06.2025",
-    text: "Алмазы пришли быстро, спасибо!",
-    rating: 5
-  },
-  {
-    name: "Пудж",
-    avatar: "https://randomuser.me/api/portraits/men/20.jpg",
-    date: "14.06.2025",
-    text: "Гемы получил моментально, кайф!",
-    rating: 5
-  },
-  {
-    name: "ShadowX",
-    avatar: "https://randomuser.me/api/portraits/men/30.jpg",
-    date: "15.06.2025",
-    text: "Робуксы зашли без проблем!",
-    rating: 4
-  }
+const names = [
+  "Иван Иванов","Мария Смирнова","Алексей Кузнецов","Ольга Петрова","Дмитрий Соколов",
+  "Пудж","Эщкере","сигмооо бой","олежаа","DarkKnight","ShadowX","PixelMaster","TurboDude","NeoHunter",
+  "Виталий Орлов","Егор Панкратов","Антон Белый","Сергей Чернов","Никита Громов","Маша Лис","FireWolf",
+  "StormBreaker","IronGiant","SilentShadow","GhostRider","NightFury","BluePhoenix","MegaBlast","KingSlayer"
 ];
 
-function createStars(rating) {
-  let stars = '';
-  for (let i = 1; i <= 5; i++) {
-    stars += i <= rating ? '★' : '☆';
-  }
-  return stars;
+const texts = [
+  "Алмазы пришли за пару минут, доволен!",
+  "Гемы прилетели моментально, магазин 🔥",
+  "Робуксы зашли без проблем, рекомендую.",
+  "Гемы реально бустят аккаунт, топ.",
+  "Алмазы заказывал не первый раз — всё супер!",
+  "Робаксы получил быстро, админы красавцы!",
+  "Гемы работают чётко, буду брать ещё.",
+  "Алмазы пришли быстрее чем ожидал.",
+  "Робуксы моментально, лучший сервис.",
+  "Гемы дешевле чем у всех!"
+];
+
+function randomChoice(arr) {
+  return arr[Math.floor(Math.random() * arr.length)];
 }
+
+function randomDate() {
+  const now = new Date();
+  const past = new Date(now.getTime() - 60 * 24 * 60 * 60 * 1000);
+  const date = new Date(past.getTime() + Math.random() * (now - past));
+  return date.toLocaleDateString('ru-RU');
+}
+
+function randomAvatar() {
+  const gender = Math.random() > 0.5 ? 'men' : 'women';
+  const id = Math.floor(Math.random() * 90);
+  return `https://randomuser.me/api/portraits/${gender}/${id}.jpg`;
+}
+
+function createStars(rating) {
+  return "★".repeat(rating) + "☆".repeat(5 - rating);
+}
+
+function generateReviews(count) {
+  const arr = [];
+  for (let i = 0; i < count; i++) {
+    arr.push({
+      name: randomChoice(names),
+      avatar: randomAvatar(),
+      date: randomDate(),
+      text: randomChoice(texts),
+      rating: Math.random() > 0.15 ? 5 : 4
+    });
+  }
+  return arr;
+}
+
+const reviews = generateReviews(100);
 
 function renderReviews() {
   const container = document.getElementById('reviews');
